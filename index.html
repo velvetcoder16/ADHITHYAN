@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adhithyan S R | Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Dynamic Color Switching */
+        :root {
+            --bg-main: #F3E9EC;
+            --bg-card: #FFFFFF;
+            --text-main: #00030E;
+            --text-muted: rgba(0, 3, 14, 0.75);
+            --header-bg: #0B0E1A;
+            --header-text: #F3E9EC;
+            --primary: #2C1B2F;
+            --primary-hover: #1e1220;
+            --secondary: #B47A9A;
+            --border-color: rgba(180, 122, 154, 0.25);
+            --accent-bg: rgba(180, 122, 154, 0.12);
+        }
+
+        .theme-cream-bordo {
+            --bg-main: #f5edd9;
+            --bg-card: #FFFFFF;
+            --text-main: #0f3d3a;
+            --text-muted: rgba(15, 61, 58, 0.85);
+            --header-bg: #0f3d3a;
+            --header-text: #f5edd9;
+            --primary: #7a1f2b;
+            --primary-hover: #5d1720;
+            --secondary: #0f3d3a;
+            --border-color: rgba(15, 61, 58, 0.2);
+            --accent-bg: rgba(122, 31, 43, 0.1);
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-main); 
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+    </style>
+</head>
+<body id="app-body" class="min-h-screen flex flex-col antialiased selection:bg-[var(--primary)] selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="bg-[var(--header-bg)] text-[var(--header-text)] sticky top-0 z-50 shadow-md transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand & Info -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-[var(--primary)] flex items-center justify-center text-white font-bold shadow-sm transition-colors duration-300">
+                    AS
+                </div>
+                <div>
+                    <h1 class="text-base font-bold tracking-tight text-white">Adhithyan S R</h1>
+                    <p class="text-[11px] opacity-80">2026BTAI023 | B.Tech CSE (AI)</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden md:flex items-center space-x-5 text-sm font-medium">
+                <a href="#home" class="hover:opacity-80 transition-opacity">Home</a>
+                <a href="#about" class="hover:opacity-80 transition-opacity">About</a>
+                <a href="#skills" class="hover:opacity-80 transition-opacity">Skills</a>
+                <a href="#projects" class="hover:opacity-80 transition-opacity">Projects</a>
+                <a href="#achievements" class="hover:opacity-80 transition-opacity">Achievements</a>
+                
+                <div class="flex items-center space-x-3 border-l border-white/20 pl-4">
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/adhithyan-s-r-5a9942447/" target="_blank" title="LinkedIn Profile" class="hover:opacity-80 text-lg transition-opacity">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    
+                    <!-- GitHub -->
+                    <a href="https://github.com/velvetcoder16/ADHITHYAN" target="_blank" title="GitHub Repository" class="hover:opacity-80 text-lg transition-opacity">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/adhhhhit" target="_blank" title="Instagram Profile" class="hover:opacity-80 text-lg transition-opacity">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <!-- Theme Switcher Selector -->
+                    <div class="relative">
+                        <select id="theme-selector" onchange="toggleTheme(this.value)" 
+                            class="px-2.5 py-1.5 text-xs font-semibold bg-white/10 border border-white/20 rounded-lg text-white hover:bg-white/20 focus:outline-none cursor-pointer transition-all">
+                            <option value="dark-navy" class="text-slate-900">🎨 Dark Navy & Rose</option>
+                            <option value="cream-bordo" class="text-slate-900">🎨 Cream & Bordo</option>
+                        </select>
+                    </div>
+
+                    <!-- Contact CTA Button -->
+                    <a href="#contact" class="px-4 py-2 bg-[var(--primary)] text-white rounded-xl hover:opacity-90 transition-all shadow-sm">
+                        Contact
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-white focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[var(--header-bg)] border-t border-white/10 px-4 py-4 space-y-3 text-sm font-medium">
+            <a href="#home" onclick="toggleMobileMenu()" class="block text-white hover:opacity-80">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-white hover:opacity-80">About</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block text-white hover:opacity-80">Skills</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block text-white hover:opacity-80">Projects</a>
+            <a href="#achievements" onclick="toggleMobileMenu()" class="block text-white hover:opacity-80">Achievements</a>
+            <div class="flex items-center space-x-4 pt-2 border-t border-white/10">
+                <a href="https://www.linkedin.com/in/adhithyan-s-r-5a9942447/" target="_blank" class="text-white hover:opacity-80 flex items-center space-x-1.5"><i class="fa-brands fa-linkedin text-base"></i> <span>LinkedIn</span></a>
+                <a href="https://github.com/velvetcoder16/ADHITHYAN" target="_blank" class="text-white hover:opacity-80 flex items-center space-x-1.5"><i class="fa-brands fa-github text-base"></i> <span>GitHub</span></a>
+                <a href="https://www.instagram.com/adhhhhit" target="_blank" class="text-white hover:opacity-80 flex items-center space-x-1.5"><i class="fa-brands fa-instagram text-base"></i> <span>Instagram</span></a>
+            </div>
+            <div class="pt-2">
+                <label class="block text-xs font-semibold text-white/70 mb-1">Select Theme:</label>
+                <select onchange="toggleTheme(this.value); toggleMobileMenu();" 
+                    class="w-full px-2.5 py-1.5 text-xs font-semibold bg-white/10 border border-white/20 rounded-lg text-white">
+                    <option value="dark-navy" class="text-slate-900">🎨 Dark Navy & Rose</option>
+                    <option value="cream-bordo" class="text-slate-900">🎨 Cream & Bordo</option>
+                </select>
+            </div>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-center py-2 bg-[var(--primary)] text-white font-bold rounded-xl">Contact Me</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
+        
+        <!-- SECTION 1: HOME / HERO -->
+        <section id="home" class="min-h-[70vh] flex flex-col justify-center items-center text-center py-12">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[var(--accent-bg)] border border-[var(--border-color)] text-xs font-semibold text-[var(--text-main)] mb-6 shadow-xs">
+                <i class="fa-solid fa-wand-magic-sparkles text-[var(--primary)]"></i>
+                <span>Creating What Won't Seem Impossible</span>
+            </div>
+            <h2 class="text-4xl sm:text-6xl font-extrabold text-[var(--text-main)] tracking-tight mb-4">
+                Hi, I'm <span class="text-[var(--primary)]">Adhithyan S R</span>
+            </h2>
+            <p class="max-w-2xl text-base sm:text-lg text-[var(--text-muted)] mb-8 leading-relaxed">
+                An aspiring AI engineer and developer passionate about building intelligent workflow automations, modern web apps, and exploring cutting-edge artificial intelligence systems.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#projects" class="px-6 py-3 bg-[var(--primary)] text-white font-semibold text-sm rounded-xl hover:opacity-90 transition-all shadow-md">
+                    View My Projects
+                </a>
+                <a href="#contact" class="px-6 py-3 bg-[var(--bg-card)] text-[var(--text-main)] border border-[var(--border-color)] font-semibold text-sm rounded-xl hover:bg-[var(--accent-bg)] transition-all">
+                    Get in Touch
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ABOUT -->
+        <section id="about" class="bg-[var(--bg-card)] rounded-3xl p-8 sm:p-12 border border-[var(--border-color)] shadow-sm">
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="border-l-4 border-[var(--primary)] pl-4">
+                    <h3 class="text-2xl font-bold text-[var(--text-main)]">About Me</h3>
+                    <p class="text-xs text-[var(--text-muted)] uppercase tracking-wider font-semibold">Background & Academic Profile</p>
+                </div>
+                <p class="text-sm sm:text-base leading-relaxed text-[var(--text-muted)]">
+                    I am currently pursuing my Bachelor of Technology (B.Tech) in Computer Science and Engineering with a specialization in Artificial Intelligence at the School of Computational Intelligence (Section C). My academic journey is driven by a deep fascination with how machine learning, API integrations, and automation can solve complex, real-world problems.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                    <div class="p-4 rounded-2xl bg-[var(--accent-bg)] border border-[var(--border-color)]">
+                        <h4 class="text-xs font-bold uppercase text-[var(--text-muted)] mb-1">Registration No</h4>
+                        <p class="text-sm font-extrabold text-[var(--primary)]">2026BTAI023</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-[var(--accent-bg)] border border-[var(--border-color)]">
+                        <h4 class="text-xs font-bold uppercase text-[var(--text-muted)] mb-1">Degree Program</h4>
+                        <p class="text-sm font-extrabold text-[var(--text-main)]">B.Tech CSE (AI)</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-[var(--accent-bg)] border border-[var(--border-color)]">
+                        <h4 class="text-xs font-bold uppercase text-[var(--text-muted)] mb-1">Section & School</h4>
+                        <p class="text-sm font-extrabold text-[var(--text-main)]">Section C (Sci. Intelligence)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SKILLS -->
+        <section id="skills" class="space-y-6">
+            <div class="border-l-4 border-[var(--primary)] pl-4">
+                <h3 class="text-2xl font-bold text-[var(--text-main)]">Technical Skills</h3>
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-wider font-semibold">Tools & Technologies</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-[var(--bg-card)] p-6 rounded-2xl border border-[var(--border-color)] shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-[var(--accent-bg)] text-[var(--primary)] flex items-center justify-center mb-4 text-lg font-bold">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h4 class="font-bold text-[var(--text-main)] mb-2">Languages & Web</h4>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed">HTML5, CSS3, JavaScript (ES6+), Python, Tailwind CSS, Responsive Design.</p>
+                </div>
+                <div class="bg-[var(--bg-card)] p-6 rounded-2xl border border-[var(--border-color)] shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-[var(--accent-bg)] text-[var(--primary)] flex items-center justify-center mb-4 text-lg font-bold">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h4 class="font-bold text-[var(--text-main)] mb-2">AI & Automation</h4>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed">Workflow Pipelines, n8n, OpenRouter API, Gemini API, Groq LLM integrations.</p>
+                </div>
+                <div class="bg-[var(--bg-card)] p-6 rounded-2xl border border-[var(--border-color)] shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-[var(--accent-bg)] text-[var(--primary)] flex items-center justify-center mb-4 text-lg font-bold">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h4 class="font-bold text-[var(--text-main)] mb-2">Data & Storage</h4>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed">Browser LocalStorage API, JSON, CSV data parsing, State management.</p>
+                </div>
+                <div class="bg-[var(--bg-card)] p-6 rounded-2xl border border-[var(--border-color)] shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-[var(--accent-bg)] text-[var(--primary)] flex items-center justify-center mb-4 text-lg font-bold">
+                        <i class="fa-solid fa-toolbox"></i>
+                    </div>
+                    <h4 class="font-bold text-[var(--text-main)] mb-2">Developer Tools</h4>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed">Git, GitHub, Vercel Deployment, VS Code, Chrome DevTools.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PROJECTS -->
+        <section id="projects" class="space-y-6">
+            <div class="border-l-4 border-[var(--primary)] pl-4">
+                <h3 class="text-2xl font-bold text-[var(--text-main)]">Featured Projects</h3>
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-wider font-semibold">Practical Applications</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-[var(--bg-card)] p-6 rounded-3xl border border-[var(--border-color)] shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-[var(--accent-bg)] text-[var(--primary)]">Web Application</span>
+                            <i class="fa-solid fa-wallet text-[var(--text-muted)] text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-[var(--text-main)] mb-2">PocketSpent Pro (Expense Tracker)</h4>
+                        <p class="text-xs sm:text-sm text-[var(--text-muted)] mb-4 leading-relaxed">
+                            A comprehensive financial management tool featuring live IP geolocation currency conversion, custom budget goal alerts, category breakdown analytics, and CSV export/import capabilities.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-[var(--border-color)] text-xs">
+                        <span class="text-[var(--text-muted)] font-medium">HTML, Tailwind CSS, JavaScript</span>
+                        <a href="https://my-project-black-nine-68.vercel.app/" target="_blank" class="font-bold text-[var(--primary)] hover:underline flex items-center space-x-1">
+                            <span>Live App</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-[var(--bg-card)] p-6 rounded-3xl border border-[var(--border-color)] shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-[var(--accent-bg)] text-[var(--primary)]">AI & Automation</span>
+                            <i class="fa-solid fa-network-wired text-[var(--text-muted)] text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-[var(--text-main)] mb-2">Workflow Automation Pipeline</h4>
+                        <p class="text-xs sm:text-sm text-[var(--text-muted)] mb-4 leading-relaxed">
+                            Engineered automated data processing workflows and LLM-powered pipelines utilizing n8n, OpenRouter, and Gemini APIs to streamline complex multi-step tasks.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-[var(--border-color)] text-xs">
+                        <span class="text-[var(--text-muted)] font-medium">n8n, Python, REST APIs</span>
+                        <span class="font-bold text-[var(--primary)]">Active Pipeline</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: ACHIEVEMENTS -->
+        <section id="achievements" class="space-y-6">
+            <div class="border-l-4 border-[var(--primary)] pl-4">
+                <h3 class="text-2xl font-bold text-[var(--text-main)]">Achievements & Milestones</h3>
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-wider font-semibold">Recognitions</p>
+            </div>
+            <div class="bg-[var(--bg-card)] rounded-3xl p-8 border border-[var(--border-color)] shadow-sm space-y-4">
+                <div class="flex items-start space-x-4 pb-4 border-b border-[var(--border-color)]">
+                    <div class="w-10 h-10 rounded-xl bg-[var(--primary)] text-white flex items-center justify-center shrink-0 font-bold">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[var(--text-main)] text-sm sm:text-base">NIAT Upskilling Program Verification</h4>
+                        <p class="text-xs text-[var(--text-muted)] mt-0.5">Successfully completed enrollment and verification procedures for the NxtWave Institute of Advanced Technologies (NIAT) Upskilling Program.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-[var(--primary)] text-white flex items-center justify-center shrink-0 font-bold">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[var(--text-main)] text-sm sm:text-base">Engineering Entrance Examinations</h4>
+                        <p class="text-xs text-[var(--text-muted)] mt-0.5">Successfully qualified and registered through national competitive examinations including JEE Main, VITEEE, and SRM entrance portals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: CONTACT -->
+        <section id="contact" class="space-y-6">
+            <div class="border-l-4 border-[var(--primary)] pl-4">
+                <h3 class="text-2xl font-bold text-[var(--text-main)]">Contact Me</h3>
+                <p class="text-xs text-[var(--text-muted)] uppercase tracking-wider font-semibold">Let's Connect</p>
+            </div>
+            <div class="bg-[var(--bg-card)] rounded-3xl p-8 sm:p-12 border border-[var(--border-color)] shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-[var(--text-main)]">Get in touch with me</h4>
+                    <p class="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                        Whether you want to discuss artificial intelligence, workflow automation, or collaborate on a web project, feel free to reach out!
+                    </p>
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-center space-x-3 text-xs sm:text-sm font-medium text-[var(--text-main)]">
+                            <div class="w-8 h-8 rounded-lg bg-[var(--accent-bg)] text-[var(--primary)] flex items-center justify-center">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <span>adhithyansr@gmail.com</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-xs sm:text-sm font-medium text-[var(--text-main)]">
+                            <div class="w-8 h-8 rounded-lg bg-[var(--accent-bg)] text-[var(--primary)] flex items-center justify-center">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <span>Thiruvananthapuram, Kerala, India</span>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-2">
+                            <a href="https://www.linkedin.com/in/adhithyan-s-r-5a9942447/" target="_blank" title="LinkedIn" class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white flex items-center justify-center hover:opacity-80 transition-opacity">
+                                <i class="fa-brands fa-linkedin-in text-sm"></i>
+                            </a>
+                            <a href="https://github.com/velvetcoder16/ADHITHYAN" target="_blank" title="GitHub" class="w-9 h-9 rounded-xl bg-[var(--header-bg)] text-white flex items-center justify-center hover:opacity-80 transition-opacity">
+                                <i class="fa-brands fa-github text-sm"></i>
+                            </a>
+                            <a href="https://www.instagram.com/adhhhhit" target="_blank" title="Instagram" class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center hover:opacity-80 transition-opacity">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web3Forms Working Email Contact Form -->
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                    <input type="hidden" name="access_key" value="81496903-8000-40e5-b6ff-b1de0d8eb20b">
+                    <input type="hidden" name="subject" value="New Portfolio Message for Adhithyan S R">
+                    <div>
+                        <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase mb-1">Your Name</label>
+                        <input type="text" name="name" required placeholder="John Doe" 
+                            class="w-full px-3.5 py-2.5 text-sm bg-[var(--bg-main)]/50 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase mb-1">Your Email</label>
+                        <input type="email" name="email" required placeholder="john@example.com" 
+                            class="w-full px-3.5 py-2.5 text-sm bg-[var(--bg-main)]/50 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase mb-1">Message</label>
+                        <textarea name="message" rows="3" required placeholder="Write your message here..." 
+                            class="w-full px-3.5 py-2.5 text-sm bg-[var(--bg-main)]/50 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 px-4 bg-[var(--primary)] hover:opacity-90 text-white font-semibold text-sm rounded-xl transition-all shadow-sm flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                        <span>Send Message</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--header-bg)] text-[var(--header-text)] py-8 text-center text-xs mt-20 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>Adhithyan S R &copy; 2026. B.Tech Computer Science & Engineering (AI). All rights reserved.</p>
+            <div class="flex items-center space-x-4 text-base">
+                <a href="https://www.linkedin.com/in/adhithyan-s-r-5a9942447/" target="_blank" title="LinkedIn" class="hover:opacity-80 transition-opacity"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/velvetcoder16/ADHITHYAN" target="_blank" title="GitHub" class="hover:opacity-80 transition-opacity"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.instagram.com/adhhhhit" target="_blank" title="Instagram" class="hover:opacity-80 transition-opacity"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Switcher & Mobile Menu Logic -->
+    <script>
+        function toggleTheme(themeName) {
+            const body = document.getElementById('app-body');
+            if (themeName === 'cream-bordo') {
+                body.classList.add('theme-cream-bordo');
+            } else {
+                body.classList.remove('theme-cream-bordo');
+            }
+            localStorage.setItem('selected_portfolio_theme', themeName);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Restore user theme choice on load
+        const savedTheme = localStorage.getItem('selected_portfolio_theme');
+        if (savedTheme) {
+            const selector = document.getElementById('theme-selector');
+            if (selector) selector.value = savedTheme;
+            toggleTheme(savedTheme);
+        }
+    </script>
+</body>
+</html>
